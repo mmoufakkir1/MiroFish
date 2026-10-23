@@ -1,0 +1,20 @@
+version: 1
+provider: codex
+
+phases:
+  plan:
+    model: gpt-6.1-sol
+    purpose: architecture, scope, risks, acceptance criteria, and validation design
+  execute:
+    model: gpt-6-luna
+    purpose: focused implementation, tests, documentation, and incremental fixes
+  validate:
+    model: gpt-6-luna
+    purpose: checks, regression evidence, diff review, and residual-risk reporting
+
+rules:
+  - Use only the Codex models declared above.
+  - Record the phase and model in `.ai/progress.md` or the completion report.
+  - Do not switch providers or models silently; update this policy first.
+  - Escalate complex validation findings to the plan model only when the task plan
+    explicitly requires a second review.
