@@ -1,4 +1,17 @@
 <div align="center">
+## Using the Agent Loops
+
+From this project directory, ask your coding agent to read `AGENTS.md`, `AGENT_LOOPS.md`,
+`.ai/plan.md`, and `loops/project.md`, then select a loop.
+
+```text
+Use requirements-loop.md to implement: [describe the task].
+Read the shared workflow at loops\workflows\agent-development-loop.md.
+Update .ai/progress.md with checks and residual risk.
+```
+
+Use `fix-loop.md` for bugs, `enhance-loop.md` for improvements, `review-loop.md` for
+diff review, `qa-loop.md` for workflows, and `ship-loop.md` before handoff.
 
 <img src="./static/image/MiroFish_logo_compressed.jpeg" alt="MiroFish Logo" width="75%"/>
 

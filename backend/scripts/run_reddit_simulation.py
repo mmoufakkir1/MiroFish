@@ -46,6 +46,8 @@ else:
     if os.path.exists(_backend_env):
         load_dotenv(_backend_env)
 
+from app.config import Config
+
 
 import re
 
@@ -440,10 +442,10 @@ class RedditSimulationRunner:
         - LLM_BASE_URL: API基础URL
         - LLM_MODEL_NAME: 模型名称
         """
-        # 优先从 .env 读取配置
-        llm_api_key = os.environ.get("LLM_API_KEY", "")
-        llm_base_url = os.environ.get("LLM_BASE_URL", "")
-        llm_model = os.environ.get("LLM_MODEL_NAME", "")
+        llm_config = Config.get_llm_config()
+        llm_api_key = llm_config["api_key"]
+        llm_base_url = llm_config["base_url"]
+        llm_model = llm_config["model_name"]
         
         # 如果 .env 中没有，则使用 config 作为备用
         if not llm_model:
@@ -454,7 +456,7 @@ class RedditSimulationRunner:
             os.environ["OPENAI_API_KEY"] = llm_api_key
         
         if not os.environ.get("OPENAI_API_KEY"):
-            raise ValueError("缺少 API Key 配置，请在项目根目录 .env 文件中设置 LLM_API_KEY")
+            raise ValueError("Missing LLM API key for the active provider")
         
         if llm_base_url:
             os.environ["OPENAI_API_BASE_URL"] = llm_base_url
