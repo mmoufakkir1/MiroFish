@@ -6,7 +6,7 @@ import path from 'node:path';
 function parseArguments(argv) {
   const args = new Map();
   for (let i = 0; i < argv.length; i += 1) {
-    const key = argv[i].replace(/^-+/, '').toLowerCase();
+    const key = argv[i].replace(/^-+/, '').replace(/-/g, '').toLowerCase();
     if (['projectroot', 'phase', 'prompt', 'agent'].includes(key)) args.set(key, argv[++i] ?? '');
     else if (key === 'whatif') args.set(key, true);
     else throw new Error(`Unknown argument: ${argv[i]}`);

@@ -11,7 +11,7 @@ const scopes = new Set(['change', 'repository']);
 function argumentsOf(argv) {
   const result = new Map();
   for (let i = 0; i < argv.length; i += 1) {
-    const key = argv[i].replace(/^-+/, '').toLowerCase();
+    const key = argv[i].replace(/^-+/, '').replace(/-/g, '').toLowerCase();
     if (!key) throw new Error('Invalid command-line argument.');
     if (key === 'verify') result.set(key, true);
     else if (key === 'projectroot' || key === 'scope') result.set(key, argv[++i] ?? '');
