@@ -99,7 +99,7 @@ completion report.
 2. Run required commands from `loops/quality-gate.json` and apply the validation matrix
    in `loops/project.md`, including touched-file gates and
    broader checks required by the selected loop or project risk. Run
-   `loops/run-quality-gate.ps1` with the appropriate scope when configured; missing
+   `loops/run-quality-gate.mjs` with the appropriate scope when configured; missing
    required configuration is a blocker, not a passing result.
 3. Exercise the affected workflow when runtime verification is required. Include empty,
    invalid, denied, boundary, timeout, retry, cancellation, duplicate-execution, or

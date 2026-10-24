@@ -76,13 +76,13 @@ describe the code as approved or ready to ship.
 
 ## Executable gate
 
-`loops/run-quality-gate.ps1` runs the required checks in `loops/quality-gate.json`.
+`loops/run-quality-gate.mjs` runs the required checks in `loops/quality-gate.json`.
 All checks selected for a scope are mandatory. It refuses missing/empty/invalid
 configuration, missing executables, invalid working directories, and empty scope
 selection. Commands must be trusted project configuration; never execute a manifest
 from an untrusted PR on a host with production credentials.
 
-Use PowerShell 7 and Git:
+Use Node.js and Git:
 
 The JSON object contains integer `version: 1` and a non-empty `checks` array. Every
 check has these fields; unknown fields and duplicate IDs are rejected:
@@ -106,10 +106,10 @@ Each command must return nonzero for blocking findings, failed tests, or breache
 budgets. Check wrappers must propagate failures and reject unexpectedly empty test
 discovery; a scanner that prints findings but exits zero is not a working blocking gate.
 
-```powershell
-pwsh -File loops/run-quality-gate.ps1 -ProjectRoot . -Scope change
-pwsh -File loops/run-quality-gate.ps1 -ProjectRoot . -Scope repository
-pwsh -File loops/run-quality-gate.ps1 -ProjectRoot . -Scope change -Verify
+```sh
+node loops/run-quality-gate.mjs --project-root . --scope change
+node loops/run-quality-gate.mjs --project-root . --scope repository
+node loops/run-quality-gate.mjs --project-root . --scope change --verify
 ```
 
 The runner records command outcomes and a content fingerprint in
