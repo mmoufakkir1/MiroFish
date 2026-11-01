@@ -3,6 +3,23 @@
 Every task runs through three explicit phases. Do not claim completion until all
 three phases have evidence.
 
+Every task also follows `fresh-review-loop.md` as a mandatory cross-cutting workflow,
+not as a second primary loop. Obtain an independent fresh-context review of the
+request/brief/design before implementation and of the final diff before completion.
+For a small task, the request may be the brief; material product, architecture, data,
+security, or ownership choices require an explicit spec. Reviewers receive the brief or
+spec and relevant source, then the final diff when applicable, without the author's
+earlier conversation or rationale. Reviewers report findings only; the author records
+dispositions and makes changes. If fresh review is unavailable, the gate is blocked
+pending an independent human review. Self-review does not satisfy this gate.
+
+For read-only assessment tasks, retain the phase record as follows: Plan defines scope
+and criteria, Execute is `not applicable` because no files or external state change,
+and Validate records a fresh-context assessment plus a second fresh-context review of
+its report. This completes phase evidence for read-only work; no implementation, diff,
+or code-test evidence is expected. Applicable source, security, and quality review still
+applies. Use the `review-only path` in `fresh-review-loop.md`.
+
 ## Mandatory quality gate
 
 Read `loops/quality-gate.md` for every task. It defines scope, correctness, security,
@@ -77,6 +94,8 @@ completion report.
    Record the actual configured plan model in the metadata or progress log.
 6. If a product, architecture, migration, security, or ownership decision is missing,
    stop and mark the task `blocked` or `deferred` with the exact decision required.
+7. Define the brief/spec and review scope using `fresh-review-loop.md`. Record the
+   pre-implementation review and agreed direction before implementation.
 
 ## 2. Execute
 
@@ -116,3 +135,6 @@ completion report.
    unresolved Critical/High finding prevents approval; a reason does not waive it.
    Mark the loop `complete`, `blocked`, or `deferred`. Repeat only when a failed gate or
    unmet acceptance criterion gives a concrete reason; otherwise stop.
+7. Obtain and record a fresh-context final-diff review. Resolve or disposition each
+   finding and rerun affected checks after edits. For read-only assessments, follow the
+   two-reviewer path above instead of requesting a final-diff review.

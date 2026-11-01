@@ -13,6 +13,9 @@ commands, and report skipped checks and residual risk.
 This project uses the shared agent-loops workflow. Before acting, read `AGENT_LOOPS.md`,
 the selected file in `loops/`, `loops/project.md`, and `loops/model-policy.yaml`.
 Read `loops/agent-development-loop.md` and `loops/quality-gate.md` on every task.
+Apply `loops/fresh-review-loop.md` to every task as a cross-cutting requirement: obtain
+fresh-context review before implementation and on the final diff; use its phase mapping
+for read-only assessments. Self-review does not satisfy this gate.
 Apply correctness, security, and efficiency gates before claiming completion; use
 `loops/quality-audit-loop.md` for validation of all existing code.
 

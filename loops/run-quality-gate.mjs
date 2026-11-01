@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // Portable required-check gate. Check output is drained and never persisted.
-import { spawn } from 'node:child_process';
+import { spawn, spawnSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
