@@ -25,7 +25,7 @@ Every loop must apply this contract. In a consuming repository it is installed a
 | --- | --- |
 | Correctness | Formatting/lint/types/build plus behavioral tests for success, failure, boundary, and regression cases; interfaces and data contracts remain compatible. |
 | Backend | API validation, trusted authentication/authorization, object and tenant isolation, transactions, migrations/rollback, bounded queries, concurrency, cancellation, and cleanup. |
-| Frontend | Runtime user flow, loading/error/denied states, responsive and keyboard behavior, safe rendering, session handling, client data exposure, bundle/network/render impact. |
+| Frontend | Runtime user flow, loading/error/denied states, responsive and keyboard behavior, safe rendering, session handling, client data exposure, bundle/network/render impact. For interactive controls, inspect default, hover, focus-visible, active, disabled, loading, error, and success states when applicable. For redesigns/restyles, verify the requested content and behavior remain connected: routes, links, fields, handlers, IDs/test selectors, data and analytics calls. |
 | Security | Read `loops/agents/security.md`; review threats and access policy, run configured secret/dependency/static/config scans, and exercise denied and abuse cases. |
 | Efficiency | Read `loops/agents/performance.md`; examine complexity, I/O, query count, allocations, payload/bundle size, caching correctness, and bounded work. Measure relevant risks against a baseline/budget. |
 | Supply chain and CI | Lockfiles, dependency provenance, least-privilege CI credentials, untrusted PR isolation, pinned tooling, artifact identity, and deploy permissions. |
@@ -47,6 +47,20 @@ or abstraction that weaken access checks, correctness, resource limits, or clean
 Review every change for avoidable work. Require a benchmark/load check when changing
 a hot path, large-data query, concurrency limit, cache, asset bundle, or project budget.
 If a required baseline or environment is unavailable, report that gate as blocked.
+
+## Gate tiers
+
+Use these tiers to distinguish release blockers from design preferences and polish;
+they do not weaken configured required checks or risk-acceptance rules.
+
+- **Invariant:** acceptance criteria and correctness, security, privacy, accessibility,
+  data-integrity, and compatibility requirements. A failed invariant blocks completion.
+  Do not waive a required check or convert a safety finding into a preference.
+- **Default:** a project convention or general heuristic. Follow it by default; a
+  concrete product or technical constraint can justify a different choice when the
+  reason and tradeoff are recorded and invariants still pass.
+- **Finish:** a polish improvement outside the acceptance criteria and required gates.
+  Record it as a follow-up when useful; it does not block completion by itself.
 
 ## Gate outcomes
 
